@@ -1,5 +1,5 @@
 # pubkey_dns_client
-`pubkey_dns_client`是基于 [wgsd-client](https://github.com/jwhited/wgsd/tree/master/cmd/wgsd-client) 二次开发的客户端, 依赖装有 [wgsd](https://github.com/jwhited/wgsd/) 插件的 [CoreDNS](https://github.com/coredns/coredns) 服务. 默认遍历已配置的 WireGuard peer 列表, 也可通过`-pubkey`指定单个 peer, 查询服务器上是否有匹配的公钥, 根据需要更新 peer 的配置, 运行一次即退出.
+`pubkey_dns_client`是基于 [wgsd-client](https://github.com/jwhited/wgsd/tree/master/cmd/wgsd-client) 二次开发的客户端, 依赖装有 [pubkey_channel](https://github.com/PunkSnail/pubkey_channel) 插件的 [CoreDNS](https://github.com/coredns/coredns) 服务. 默认遍历已配置的 WireGuard peer 列表, 也可通过`-pubkey`指定单个 peer, 查询服务器上是否有匹配的公钥, 根据需要更新 peer 的配置, 运行一次即退出.
 
 ```
 ./pubkey_dns_client --help
@@ -26,4 +26,8 @@ Options:
   -s <num>      Seconds between each execution.
   -t <num>      Variable number of loops.
   --help        Display this information.
+
+例:
+./commands_loop.sh -c '"./pubkey_dns_client -device=tunnel -dns=172.17.22.10:5300 -zone=snail -pubkey <public key>"' -s 2 -t 2
+
 ```
